@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Risk Prediction</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 420px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        p {
+            margin: 0 0 25px 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        label {
+            font-size: 13px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 16px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #222;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .low {
+            background: #e7f7ee;
+            color: #1b7a4c;
+        }
+
+        .high {
+            background: #fdeaea;
+            color: #b00020;
+        }
+
+        footer {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Credit Risk Prediction</h1>
+    <p>Machine Learning Based Loan Analysis</p>
+
+    <form action="/predict" method="post">
+        <label>Age</label>
+        <input type="number" name="age" required>
+
+        <label>Sex (0 = Female, 1 = Male)</label>
+        <input type="number" name="sex" required>
+
+        <label>Job Type (0–3)</label>
+        <input type="number" name="job" required>
+
+        <label>Credit Amount</label>
+        <input type="number" name="credit_amount" required>
+
+        <label>Duration (months)</label>
+        <input type="number" name="duration" required>
+
+        <button type="submit">Predict Risk</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result {% if 'Low' in prediction_text %}low{% else %}high{% endif %}">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+    <footer>
+        Mayank • Deepanshu Soni
+    </footer>
+</div>
+
+</body>
+</html>
